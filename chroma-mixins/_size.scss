@@ -1,0 +1,39 @@
+// creates width and height css statements
+// $sizes: width x height
+// eg. @include size(100 200)
+
+@mixin size($sizes) {
+	@if length($sizes) == 1 {
+		@if $sizes == auto {
+			width:  $sizes;
+			height: $sizes;
+		} @else if unitless($sizes) {
+			width:  $sizes + px;
+			height: $sizes + px;
+		} @else if not(unitless($sizes)) {
+			width:  $sizes;
+			height: $sizes;
+		}
+	}
+
+	@if length($sizes) == 2 {
+		$width:  nth($sizes, 1);
+		$height: nth($sizes, 2);
+
+		@if $width == auto {
+			width: $width;
+		} @else if not(unitless($width)) {
+			width: $width;
+		} @else if unitless($width) {
+			width: $width + px;
+		}
+
+		@if $height == auto {
+			height: $height;
+		} @else if not(unitless($height)) {
+			height: $height;
+		} @else if unitless($height) {
+			height: $height + px;
+		}
+	}
+}

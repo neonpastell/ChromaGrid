@@ -1,0 +1,23 @@
+@mixin user-select($arg: false) {
+    -webkit-user-select: $arg;
+    -khtml-user-select: $arg;
+    -moz-user-select: $arg;
+    -ms-user-select: $arg;
+    user-select: $arg;
+}
+
+
+
+@mixin selection($color, $background) {
+    // WebKit, Opera, & IE9
+    ::selection {
+        color: $color; 
+        background: $background;
+    }
+
+	// Firefox
+    ::-moz-selection {
+        color: $color;
+        background: $background;
+    }
+}

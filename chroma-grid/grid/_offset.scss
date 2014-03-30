@@ -1,0 +1,6 @@
+// creates an offset for columns
+@mixin offset($span: 0 of $column-amount) {
+	$factor: nth($span, 1);
+	$parent-columns: getParentSpan($span);
+	margin-left: getColumnWidth($factor, $parent-columns) + getColumnGutter($parent-columns);
+}

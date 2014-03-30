@@ -1,0 +1,36 @@
+// converts pixel to em value, on custom base
+@function em($pxvalue, $base: 16) {
+  	@return ($pxvalue / $base) * 1em;
+}
+
+// converts em to pixel value, on custom base
+@function px($emvalue, $base: 16) {
+  	@return ($emvalue * $base) * 1px;
+}
+
+// checks if integer value is even
+@function is-even($int) {
+	@if $int%2 == 0 {
+		@return true;
+	}
+	@return false;
+}
+
+// calculates the value based on golden ratios sequence
+@function golden-ratio($value, $factor: 1) {
+	$ratio : 1.618;
+
+	@if $factor > 0 {
+		@for $i from 1 through $factor {
+			$value: ($value * $ratio);
+		}
+	}
+	@if $factor < 0 {
+		$factor: abs($factor);
+		@for $i from 1 through $factor {
+			$value: ($value / $ratio);
+		}
+	}
+
+	@return $value;
+}

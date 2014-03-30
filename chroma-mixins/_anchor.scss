@@ -1,0 +1,28 @@
+@mixin anchor($nested: false) {
+	@if ($nested) {
+		a,
+		a:link,
+		a:visited {
+			@content;
+		}	
+	} @else {
+		&:link,
+		&:visited {
+			@content;
+		}
+	}
+}
+
+@mixin anchor_hover($nested: false) {
+	@if ($nested) {
+		a:hover,
+		a:active {
+			@content;
+		}	
+	} @else {
+		&:hover,
+		&:active {
+			@content;
+		}
+	}
+}

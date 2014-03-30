@@ -1,0 +1,10 @@
+* {
+	@include grid-box-sizing(border-box);
+	&:before {
+		@include grid-box-sizing(border-box);
+	}
+	&:after {
+		@include grid-box-sizing(border-box);
+	}
+
+}

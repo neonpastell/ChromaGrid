@@ -1,0 +1,50 @@
+// calculates the columns width in percentage, based on span amount and parents column amount
+@function getColumnWidth($factor: 1, $parents-columns: $column-amount) {
+    $columns-width: $factor * $column-width + ($factor - 1) * $column-gutter;
+    $parents-width: $parents-columns * $column-width + ($parents-columns - 1) * $column-gutter;
+    @return percentage($columns-width / $parents-width);
+}
+
+
+// calculates the gutter width in percentage, based on parents column amount and custom gutter width
+@function getColumnGutter($parents-columns: $column-amount, $gutter-width: $column-gutter) {
+    $parents-width: $parents-columns * $column-width + ($parents-columns - 1) * $column-gutter;
+    @return percentage($gutter-width / $parents-width);
+}
+
+
+// parses the arguments of columns mixin for nested calculation
+@function getParentSpan($span: $span) {
+    @if length($span) == 3 {
+        $parent-columns: nth($span, 3);
+        @return $parent-columns;
+    }
+
+    @else if length($span) == 2 {
+        $parent-columns: nth($span, 2);
+        @return $parent-columns;
+    }
+
+    @else {
+        @return $column-amount;
+    }
+}
+
+
+// adds a new breakpoint for responsive designs
+@function add-breakpoint($query: $feature $value, $column-amount-at-breakpoint: $column-amount) {
+    
+    @if (length($query) == 1) {
+        $query: $default-breakpoint nth($query, 1) $column-amount-at-breakpoint;
+    }
+
+    @else if (length($query) == 2 or length($query) == 4) {
+        $query: append($query, $column-amount-at-breakpoint);
+    }
+
+    @else {
+        @warn 'wrong amount of parameters';
+    }
+
+    @return $query
+}

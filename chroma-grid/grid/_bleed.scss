@@ -1,0 +1,26 @@
+// creates bleeding column, based on column span amount
+// e.g. @include bleed(2)
+@mixin bleed($amount) {
+	width: getColumnWidth($amount) + getColumnGutter();
+	padding-right: getColumnGutter() / 2;
+	padding-left: getColumnGutter() / 2;
+	margin-right: getColumnGutter() / 2;
+	margin-left: - getColumnGutter() / 2;
+}
+
+// makes last column in row bleed
+@mixin bleed-omega($amount: 1) {
+	width: getColumnWidth($amount) + getColumnGutter() / 2;
+	padding-right: 0;
+	padding-left: getColumnGutter() / 2;
+	margin-right: 0;
+	margin-left: - getColumnGutter() / 2;
+}
+
+// makes first column in row bleed
+@mixin bleed-alpha($amount: 1) {
+	width: getColumnWidth($amount) + getColumnGutter() / 2;
+	padding-left: 0;
+	padding-right: getColumnGutter() / 2;
+	margin-right: getColumnGutter() / 2;
+}

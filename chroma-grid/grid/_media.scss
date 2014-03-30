@@ -1,0 +1,71 @@
+// alias for media
+@mixin at-breakpoint($query: $feature $value, $total-columns: $column-amount) {
+	@include media($query, $total-columns) {
+		@content;
+	}
+}
+
+
+// ads media query for breakpoints
+@mixin media($query: $feature $value, $total-columns: $column-amount) {
+
+	// for retina or print media queries
+	@if (length($query) == 1 and $query == retina) {
+		@media screen and (-webkit-min-device-pixel-ratio: 2) { 
+			@content;
+		} 
+	} @else if (length($query) == 1 and $query == print) {
+		@media print {
+			@content;
+		} 
+	}
+
+	// custom parameters
+    @else if (length($query) == 1) {
+    	@media screen and ($default-breakpoint: nth($query, 1)) {
+			$default-column-amount: $column-amount;
+	    	$column-amount: $total-columns;
+	    	@content;
+	    	$column-amount: $default-column-amount;
+    	}
+    } @else if (length($query) == 2) {
+        @media screen and (nth($query, 1): nth($query, 2)) {
+			$default-column-amount: $column-amount;
+	    	$column-amount: $total-columns;
+	    	@content;
+	    	$column-amount: $default-column-amount;
+    	}
+    } @else if (length($query) == 4) {
+        @media screen and (nth($query, 1): nth($query, 2)) and (nth($query, 3): nth($query, 4)) {
+			$default-column-amount: $column-amount;
+	    	$column-amount: $total-columns;
+	    	@content;
+	    	$column-amount: $default-column-amount;
+    	}
+    }
+
+
+
+
+	// parameter is breakpoint variable
+	@else if (length($query) == 3) {
+		@media screen and (nth($query, 1): nth($query, 2)) {
+		    $default-column-amount: $column-amount;
+	    	$column-amount: nth($query, 3);
+	    	@content;
+	    	$column-amount: $default-column-amount;
+	    }
+	} @else if (length($query) == 5) {
+		@media screen and (nth($query, 1): nth($query, 2)) and (nth($query, 3): nth($query, 4)) {
+		    $default-column-amount: $column-amount;
+	    	$column-amount: nth($query, 5);
+	    	@content;
+	    	$column-amount: $default-column-amount;
+	    }
+	}
+
+	@else {
+        @warn 'wrong amount of parameters';
+    }
+	
+}

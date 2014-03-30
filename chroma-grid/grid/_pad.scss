@@ -1,0 +1,10 @@
+// makes a columns padding larger
+// eg: @include pad(20px 20px 20px default);
+@mixin pad($padding: getColumnGutter()) {
+  $padding-list: null;
+  @each $value in $padding {
+    $value: if($value == 'default', getColumnGutter(), $value);
+    $padding-list: join($padding-list, $value);
+  }
+  padding: $padding-list;
+}

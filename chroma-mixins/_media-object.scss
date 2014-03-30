@@ -1,0 +1,78 @@
+$media_object-image_class: media__image;
+$media_object-content_class: media__content;
+
+%media_object-clear {
+	overflow: hidden;
+	_overflow: visible;
+	zoom: 1;
+}
+
+@mixin media-object($param: left $media_object-image_class $media_object-content_class) {
+	@extend %media_object-clear;
+
+	@if (length($param) == 1) {
+		@if (nth($param, 1) == left or nth($param, 1) == true) {
+			.#{$media_object-image_class} {
+				float: left;
+				img {
+					display: block;
+				}
+			}
+		} @else if (nth($param, 1) == right or nth($param, 1) == false) {
+			.#{$media_object-image_class} {
+				float: right;
+				img {
+					display: block;
+				}
+			}
+		} @else {
+			@warn "wrong parameter (options: true, false, left, right)";
+		}
+		.#{$media_object-content_class} {
+			@extend %media_object-clear;
+		}
+	} 
+
+	@else if (length($param) == 2) {
+		.#{nth($param, 1)} {
+			float: left;
+			img {
+				display: block;
+			}
+		}
+		.#{nth($param, 2)} {
+			@extend %media_object-clear;
+		}
+	} 
+
+	@else if (length($param) == 3) {
+		@if (nth($param, 1) == left or nth($param, 1) == true) {
+			.#{$media_object-image_class} {
+				float: left;
+				img {
+					display: block;
+				}
+			}
+		} 
+		@else if (nth($param, 1) == right or nth($param, 1) == false) {
+			.#{$media_object-image_class} {
+				float: right;
+				img {
+					display: block;
+				}
+			}
+		} 
+		@else {
+			@warn "wrong parameter (options: true, false, left, right)";
+		}
+
+		.#{nth($param, 3)} {
+			@extend %media_object-clear;
+		}
+	} 
+
+	@else {
+		@warn "wrong parameter amount (should be: orientation image-class content-class)";
+	}
+}
+

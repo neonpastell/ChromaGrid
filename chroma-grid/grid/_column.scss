@@ -1,0 +1,30 @@
+// creates a grid element spanning any number of columns within a parent container
+// eg. @include columns(2); 		creates an element spanning 2 columns (within default container)
+//     @include columns(3 of 6); 	creates an element spanning 3 columns within an 6 column wide container
+//     @include columns(3 6); 		you can omit the 'of'
+@mixin columns($span: $amount of $columns-amount) {
+	$factor: nth($span, 1);
+	$parent-columns: getParentSpan($span);
+	width: getColumnWidth($factor, $parent-columns);
+	margin-right: getColumnGutter($parent-columns);
+	@include column();
+}
+
+
+
+
+
+@mixin column() {
+	float: left;
+	&:last-child {
+		@include omega();
+	}
+
+	@if ($debug-show-column == true) {
+		background-color: rgba(0, 0, 150, 0.05);
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		border: 1px solid rgba(0, 0, 0, 0.05);
+	}
+}

@@ -1,0 +1,32 @@
+/*! ChromaGrid v0.2 | MIT License | labs.neonpastell.de/chromagrid */
+
+/*******************************************************************************
+ * Copyright (c) 2014 Neonpastell GmbH, Manuel Piepereit
+ * http://www.neonpastell.de
+ * MIT License
+ * Docu: labs.neonpastell.de/chromagrid
+ ******************************************************************************/
+
+
+// importing default settings
+@import "settings";
+
+$max-width-container: $container-width + 2 * $container-padding;
+
+// importing the grid
+@import "grid/mixins";
+@import "grid/defaults";
+@import "grid/container";
+@import "grid/row";
+@import "grid/column";
+@import "grid/omega";
+@import "grid/offset";
+@import "grid/bleed";
+@import "grid/pushpull";
+@import "grid/center";
+@import "grid/fill-parent";
+@import "grid/pad";
+
+@import "grid/media";
+
+@import "grid/scaffolding";

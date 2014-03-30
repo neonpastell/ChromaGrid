@@ -1,0 +1,24 @@
+// http://codepen.io/shshaw/full/gEiDt#Fixed
+@mixin absolute-center {
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+@mixin absolute-center--is-fixed {
+	width: 50%;
+	height: 50%;
+	overflow: auto;
+	position: fixed;
+	z-index: 999;
+}
+@mixin absolute-center--is-responsive {
+	width: 60%;
+	height: 60%;
+	min-width: 400px;
+	max-width: 500px;
+	padding: 40px;
+	overflow: auto;
+}

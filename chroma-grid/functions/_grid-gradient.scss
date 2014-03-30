@@ -1,0 +1,61 @@
+// creates all gradient stops for each column to visualize the grid
+@function column-gradient-lines($column-amount, $color: $visual-grid-color) {
+  $transparent: rgba(0,0,0,0);
+
+  $_column-width: getColumnWidth(1, $column-amount);
+  $_gutter-width: getColumnGutter($column-amount);
+  $_column-offset: $_column-width;
+
+  $values: ($transparent 0, $color 0);
+
+  @for $i from 1 to $column-amount*2 {
+    @if is-even($i) {
+      // gutter end
+      $values: append($values, $transparent $_column-offset, comma);
+      $values: append($values, $color $_column-offset, comma);
+      $_column-offset: $_column-offset + $_column-width;
+    }
+
+    @else {
+      // column end
+      $values: append($values, $color $_column-offset, comma);
+      $values: append($values, $transparent $_column-offset, comma);
+      $_column-offset: $_column-offset + $_gutter-width;
+    }
+  }
+
+  @return $values;
+}
+
+
+
+// creates all gradient stops for each gutter to visualize the grid
+@function gutter-gradient-lines($column-amount, $color: $visual-grid-color) {
+  $transparent: rgba(0,0,0,0);
+
+  $_column-width: getColumnWidth(1, $column-amount);
+  $_gutter-width: getColumnGutter($column-amount);
+  $_column-offset: $_column-width;
+
+  $values: ($color 0, $transparent 0);
+
+  @for $i from 1 to $column-amount*2 {
+    @if is-even($i) {
+      // gutter end
+      $values: append($values, $color $_column-offset, comma);
+      $values: append($values, $transparent $_column-offset, comma);
+      $_column-offset: $_column-offset + $_column-width;
+    }
+
+    @else {
+      // column end
+      $values: append($values, $transparent $_column-offset, comma);
+      $values: append($values, $color $_column-offset, comma);
+      $_column-offset: $_column-offset + $_gutter-width;
+    }
+  }
+
+  @return $values;
+}
+
+

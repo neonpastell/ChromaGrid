@@ -1,0 +1,113 @@
+// creates css classes for the basic grid functionality for faster development
+@if ($scaffolding == true) {
+	
+	/* Scaffolding is on */
+
+	// outer container
+	.container {
+		@include container();
+	}
+
+	// one row containing columns
+	.row {
+		@include row();
+	}
+
+	// column
+	.col {
+		@include column();
+	}
+
+	// columns spanning from 1 to N
+	@for $i from 1 through $column-amount {
+		.cols#{$i} {
+			@include columns($i);
+		}
+	}
+
+	// last column in row
+	.omega {
+		@include omega;
+	}
+
+	// nested columns spanning from 1 of N to N of N
+	@for $i from 1 through $column-amount {
+		@for $j from 1 through $column-amount {
+			.cols#{$i}of#{$j} {
+				@include columns($i of $j);
+			}
+		}
+	}
+
+	// column offsets from 1 to N
+	@for $i from 1 through $column-amount {
+		.offset#{$i} {
+			@include offset($i);
+		}
+	}
+
+	// matrix of 1 to N columns
+	@for $i from 1 through $column-amount {
+		.matrix#{$i} {
+			.matrix {
+				&:nth-child(#{$i}n) {
+					margin-right: 0;
+				}
+				@if type-of($i) == number {
+					&:nth-child(#{$i}n+1) {
+				    	clear: left;
+					}
+				}
+	        }
+		}
+	}
+
+	.fill-parent {
+		@include fill-parent();
+	}
+
+	.center {
+		@include center();
+	}
+}
+
+
+// creates css classes for debugging or warning messages while developing the page
+@if ($scaffolding-debug == true) {
+
+	/* Scaffolding for debug classes is on */
+
+	.warning,
+	.warning-info,
+	.debug,
+	.debug-info {
+		background-color: rgba(255, 0, 0, 0.5) !important;
+		color: white !important;
+	}
+
+	.warning-info,
+	.debug-info {
+		font-family: monospace !important;
+		font-size: 20px !important;
+		font-weight: bold !important;
+	}
+
+	.warning.highlight,
+	.warning-info.highlight,
+	.debug.highlight,
+	.debug-info.highlight {
+		-webkit-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5) !important;
+		-moz-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5) !important;
+		-ms-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5) !important;
+		-o-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5) !important;
+		box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5) !important;
+	}
+
+	// hides all .debug-info and .warning-info elements
+	@if ($debug-show-info == false) {
+		.warning-info,
+		.debug-info {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,5 @@
+// fills the parent of a column
+@mixin fill-parent() {
+	width: 100%;
+	@include grid-box-sizing(border-box);
+}

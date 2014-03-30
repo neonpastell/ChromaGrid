@@ -1,0 +1,13 @@
+// color and opacity
+@mixin tap-highlight($color: #ffffff 0.0) {
+	@if length($color) == 1{
+		-webkit-tap-highlight-color: rgba(nth($color, 1), 1);	
+	} @else if length($color == 2) {
+		-webkit-tap-highlight-color: rgba(nth($color, 1), nth($color, 2));
+	} @else if length($color == 3) {
+		-webkit-tap-highlight-color: rgba(nth($color, 1), nth($color, 2), nth($color, 3), 1);
+	} @else if length($color == 4) {
+		-webkit-tap-highlight-color: rgba(nth($color, 1), nth($color, 2), nth($color, 3), nth($color, 4));
+	}
+    
+}

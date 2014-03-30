@@ -1,0 +1,18 @@
+@mixin text-shadow($color) {
+    text-shadow: -1px 0 $color, 0 1px $color, 1px 0 $color, 0 -1px $color;
+}
+
+
+
+@mixin font-face($name, $path, $font-weight: normal, $font-style: normal) {
+    @font-face {
+        font-family: $name;
+        src: url($path'.eot');
+        src: url($path'.eot?iefix') format('eot'),
+             url($path'.woff') format('woff'),
+             url($path'.ttf') format('truetype'),
+             url($path'.svg#webfontjSpbZQRv') format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style;
+    }
+}

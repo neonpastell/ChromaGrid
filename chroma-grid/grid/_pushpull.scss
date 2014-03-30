@@ -1,0 +1,17 @@
+// pushs an element any amount of columns to the right within a parent container 
+// eg. @include push(2); 		pushs element 2 columns to the right (parent container has default column amount)
+//     @include push(2 of 6); 	pushs element 2 columns to the right within an parent container spanning 6 columns
+@mixin push($amount: 0 of $columns-amount) {
+	$factor: nth($amount, 1);
+	$parent-columns: getParentSpan($amount);
+	left: getColumnWidth($factor, $parent-columns) + getColumnGutter($parent-columns);
+	position: relative;
+}
+
+// pulls an element any amount of columns to the right within a parent container
+@mixin pull($amount: 0 of $columns-amount) {
+	$factor: nth($amount, 1);
+	$parent-columns: getParentSpan($amount);
+	left: -(getColumnWidth($factor, $parent-columns) + getColumnGutter($parent-columns));
+	position: relative;
+}

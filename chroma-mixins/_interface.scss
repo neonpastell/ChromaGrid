@@ -1,0 +1,9 @@
+// is an interface element
+
+@mixin ui {
+	margin: 0;
+	padding: 0;
+	line-height: 1em;
+	white-space: nowrap;
+	overflow: hidden;
+}

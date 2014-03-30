@@ -1,0 +1,51 @@
+// creates the outer container that is centered on the page
+// eg. @include container(); 		container with default layout behaviour
+// 	   @include container(static);  makes container with static width
+@mixin container($query: $page-layout $max-width-container) {
+	@include clearfix;
+	margin-left: auto;
+	margin-right: auto;
+
+	padding-right: percentage($container-padding/$max-width-container);
+	padding-left: percentage($container-padding/$max-width-container);
+	padding-right: $container-padding;
+	padding-left: $container-padding;
+	//padding-right: percentage($container-padding/100em);
+	//padding-left: percentage($container-padding/100em);
+
+	// check parameters and set variables
+	$_max-width: $max-width-container;
+	$_layout: $query;
+	@if length($query) == 1 {
+		@if type-of($query) == string {
+			$_layout: $query;
+		} @else {
+			$_max-width: $query;
+			$_layout: default;
+		}
+	} @else {
+		$_max-width: nth($query, 2);
+		$_layout: nth($query, 1);
+	}
+
+	// set layout behaviour
+	@if ($_layout == default) {
+		$_layout: $page-layout;
+	}
+	@if ($_layout == fluid) {
+		max-width: none;
+		width: 100%;
+	} @else if($_layout == fixed or $_layout == static) {
+		max-width: $_max-width;
+		width: $_max-width;
+	} @else {
+		max-width: $_max-width;
+		width: auto;
+	}
+
+
+
+	@if ($debug-show-container == true) {
+		background-color: rgba(150, 150, 150, 0.05);
+	}
+}

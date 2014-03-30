@@ -1,0 +1,24 @@
+@import "chroma-grid/settings";						// imports all default grid settings
+
+
+// change the grid settings to your own needs
+
+$column-amount				: 12;					// number of columns
+$column-width 				: em(60);				// width of each column
+$column-gutter 				: em(20);				// gutter between two columns
+$container-padding			: em(10);				// gutter on sides of container
+$container-width			: em(940);				// maximum width of container
+$page-layout				: responsive;			// (responsive|fixed|fluid)
+
+// $scaffolding 			: true;					// creates a set of predefined css classes
+// $scaffolding-debug 		: true;					// creates matching classes for easy debugging
+
+// $debug-show-info 		: true; 				// shows or hides elements with .debug-info or .warning-info class
+// $debug-show-container	: true; 				// colors container elements for easier layout creation
+// $debug-show-row 			: true; 				// colors row elements for easier layout creation
+// $debug-show-column 		: true; 				// colors column elements for easier layout creation
+
+// $default-breakpoint 		: max-width 			// default behaviour for media queries
+
+
+@import "chroma-grid/grid";							// imports the grid system

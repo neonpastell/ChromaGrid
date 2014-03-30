@@ -1,0 +1,29 @@
+// importing all functions
+@import "functions/functions";
+@import "functions/grid";
+@import "functions/grid-gradient";
+
+// default grid settings
+// create your own settings-file and overwrite those you want to change.
+// To do so, import this _settings.scss, define your own settings and then import _grid.scss
+
+// the grid
+$column-amount			: 12 !default; 					// number of columns
+$column-width 			: em(60) !default; 				// width of each column
+$column-gutter			: em(20) !default; 				// gutter between two columns
+$container-padding		: em(10) !default;				// gutter on sides of container
+$container-width		: em(940) !default;				// maximum width of container
+
+// mobile
+$page-layout 			: responsive !default; 			// (responsive|fixed|fluid)
+$default-breakpoint 	: max-width !default; 			// default behaviour for media queries
+
+// helpers
+$scaffolding 			: false !default; 				// creates a set of predefined css classes
+$scaffolding-debug 		: false !default; 				// creates matching classes for easy debugging
+
+$debug-show-info 		: false !default; 				// shows or hides elements with .debug-info or .warning-info class
+$debug-show-container	: false !default; 				// colors container elements for easier layout creation
+$debug-show-row 		: false !default; 				// colors row elements for easier layout creation
+$debug-show-column 		: false !default; 				// colors column elements for easier layout creation
+

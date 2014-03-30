@@ -1,0 +1,60 @@
+// last column in row to remove the right margin
+// eg:  @include omega();   only this element
+//      @include omega(3);  every 3rd element
+//      @include omega(4, childs-class);   every 4th element of child with class 'childs-class'
+@mixin omega($nth: null, $class: null) {
+    @if($class == null) {
+        @if($nth == null) {
+            margin-right: 0;
+        } @else {
+            @include nth-child($nth);
+        }    
+    } @else {
+        .#{$class} {
+            @include nth-child($nth);
+        }
+    }
+}
+
+
+// mixin to create every nth with clear of n+1 elements
+@mixin nth-child($nth) {
+  &:nth-child(#{$nth}n) {
+    margin-right: 0;
+  }
+
+  @if type-of($nth) == number {
+    &:nth-child(#{$nth}n+1) {
+      clear: left;
+    }
+  }
+}
+
+
+
+
+@mixin omega-reset($nth: null, $class: null) {
+    @if($class == null) {
+        @if($nth == null) {
+            margin-right: 0;
+        } @else {
+            @include nth-child-reset($nth);
+        }    
+    } @else {
+        .#{$class} {
+            @include nth-child-reset($nth);
+        }
+    }
+}
+// mixin to create every nth with clear of n+1 elements
+@mixin nth-child-reset($nth) {
+  &:nth-child(#{$nth}n) {
+    margin-right: getColumnGutter();
+  }
+
+  @if type-of($nth) == number {
+    &:nth-child(#{$nth}n+1) {
+      clear: none;
+    }
+  }
+}
